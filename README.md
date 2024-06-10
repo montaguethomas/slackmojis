@@ -21,6 +21,10 @@ cd slackmojis
 docker run --rm -it -v $PWD:/app/storage ghcr.io/montaguethomas/slackmojis:latest upload.py
 ```
 
+## ToDo
+
+- Add support for `upload.py` to use slackmoji packs.
+
 ## References
 
 - https://github.com/lambtron/emojipacks
