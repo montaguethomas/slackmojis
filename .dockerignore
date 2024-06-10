@@ -1,2 +1,5 @@
 .dockerignore
+.git
+.github
+.gitignore
 Dockerfile
