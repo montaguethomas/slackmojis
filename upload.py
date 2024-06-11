@@ -113,40 +113,6 @@ def _fetch_api_token(session):
   return raw_input("Please enter the api_token (\"xoxs-12345-abcdefg....\") from the page: ").strip()
 
 
-def main():
-  args = _argparse()
-  session = _session(args)
-  existing_emojis = get_current_emoji_list(session)
-  uploaded = 0
-  skipped = 0
-
-  def process_file(filename):
-    nonlocal skipped
-    nonlocal uploaded
-    print("Processing {}.".format(filename))
-    emoji_name = "{}{}{}".format(
-      args.prefix.strip(),
-      os.path.splitext(os.path.basename(filename))[0],
-      args.suffix.strip()
-    )
-    if emoji_name in existing_emojis:
-      print("Skipping {}. Emoji already exists".format(emoji_name))
-      skipped += 1
-    else:
-      upload_emoji(session, emoji_name, filename)
-      print("{} upload complete.".format(filename))
-      uploaded += 1
-
-  for slackmoji_file in args.slackmoji_files:
-    if os.path.isdir(slackmoji_file):
-      for file in os.listdir(slackmoji_file):
-        filename = os.path.join(slackmoji_file, file)
-        process_file(filename)
-    else:
-      process_file(slackmoji_file)
-  print("\nUploaded {} emojis. ({} already existed)".format(uploaded, skipped))
-
-
 def get_current_emoji_list(session):
   page = 1
   result = []
@@ -198,6 +164,40 @@ def upload_emoji(session, emoji_name, filename):
       print("Error with uploading %s: %s" % (emoji_name, response_json))
 
     break
+
+
+def main():
+  args = _argparse()
+  session = _session(args)
+  existing_emojis = get_current_emoji_list(session)
+  uploaded = 0
+  skipped = 0
+
+  def process_file(filename):
+    nonlocal skipped
+    nonlocal uploaded
+    print("Processing {}.".format(filename))
+    emoji_name = "{}{}{}".format(
+      args.prefix.strip(),
+      os.path.splitext(os.path.basename(filename))[0],
+      args.suffix.strip()
+    )
+    if emoji_name in existing_emojis:
+      print("Skipping {}. Emoji already exists".format(emoji_name))
+      skipped += 1
+    else:
+      upload_emoji(session, emoji_name, filename)
+      print("{} upload complete.".format(filename))
+      uploaded += 1
+
+  for slackmoji_file in args.slackmoji_files:
+    if os.path.isdir(slackmoji_file):
+      for file in os.listdir(slackmoji_file):
+        filename = os.path.join(slackmoji_file, file)
+        process_file(filename)
+    else:
+      process_file(slackmoji_file)
+  print("\nUploaded {} emojis. ({} already existed)".format(uploaded, skipped))
 
 
 if __name__ == "__main__":
