@@ -21,7 +21,7 @@ URL_LIST = "https://{team_name}.slack.com/api/emoji.adminList"
 API_TOKEN_REGEX = r'.*(?:\"?api_token\"?):\s*\"([^"]+)\".*'
 API_TOKEN_PATTERN = re.compile(API_TOKEN_REGEX)
 
-JAVASCRIPT_MATCH_TOKEN = """javascript:prompt("Your emoji API Token is:", document.documentElement.innerHTML.match('.*(?:\"?api_token\"?):\s*\"([^"]+)\".*')[1])"""
+JAVASCRIPT_MATCH_TOKEN = r"""javascript:prompt("Your emoji API Token is:", document.documentElement.innerHTML.match('.*(?:\"?api_token\"?):\s*\"([^"]+)\".*')[1])"""
 
 
 class ParseError(Exception):
