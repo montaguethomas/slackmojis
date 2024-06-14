@@ -72,9 +72,9 @@ def _argparse():
   parser.add_argument(
     "slackmoji_files",
     nargs="+",
-    help=("Paths to slackmoji, e.g. if you "
-        "unzipped http://cultofthepartyparrot.com/parrots.zip "
-        "in your home dir, then use ~/parrots/*"),
+    help=("Paths to slackmojis, e.g. if you "
+        "unzipped http://cultofthepartyparrot.com "
+        "in your home dir, then use ~/parrots or ~/parrots/wave*"),
   )
   args = parser.parse_args()
   if not args.team_name:
