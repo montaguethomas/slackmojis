@@ -18,7 +18,7 @@ docker run --rm -it -v $PWD:/app/storage ghcr.io/montaguethomas/slackmojis:lates
 
 ```
 cd slackmojis
-docker run --rm -it -v $PWD:/app/storage ghcr.io/montaguethomas/slackmojis:latest upload.py
+docker run --rm -it -v $PWD:/app/storage ghcr.io/montaguethomas/slackmojis:latest upload.py storage/downloaded
 ```
 
 ## ToDo
