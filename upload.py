@@ -192,9 +192,9 @@ def main():
     if os.path.isdir(slackmoji_file):
       for file in os.listdir(slackmoji_file):
         filename = os.path.join(slackmoji_file, file)
-        process_file(filename)
+        if os.path.isfile(filename): process_file(filename)
     else:
-      process_file(slackmoji_file)
+      if os.path.isfile(slackmoji_file): process_file(slackmoji_file)
   print("\nUploaded {} emojis. ({} already existed)".format(uploaded, skipped))
 
 
